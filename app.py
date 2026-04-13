@@ -91,18 +91,10 @@ if st.session_state.plan:
                 st.error(f"❌ Build Failed: {e}")
 
 
-    # --- RUN APP ---
+    # --- RUN APP (MODIFIED FOR DEPLOYMENT) ---
     with col2:
         if st.button("▶️ Run App"):
-            try:
-                # Start Vite dev server
-                url = run_app()
-
-                st.success("App Running!")
-                st.markdown(f"👉 [Open App]({url})")
-
-            except Exception as e:
-                st.error(f"❌ Run Failed: {e}")
+            st.info("⚠️ Live app preview runs locally. Please download and run using npm install && npm run dev.")
 
 
     # --- MODIFY APP ---
