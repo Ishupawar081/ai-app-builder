@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from agent import create_downloadable_app
 
 # 🔹 Configure Streamlit page
 st.set_page_config(page_title="AI App Builder", layout="centered")
@@ -160,3 +161,15 @@ if st.button("🔄 Reset"):
     st.session_state.plan = None
     st.session_state.app_built = False
     st.rerun()
+
+
+if st.button("📦 Download App"):
+    zip_file = create_downloadable_app()
+
+    with open(zip_file, "rb") as f:
+        st.download_button(
+            label="⬇️ Download ZIP",
+            data=f,
+            file_name="react_app.zip",
+            mime="application/zip"
+        )

@@ -1,6 +1,7 @@
 from planner import generate_react_app, call_llm
 import os
 import subprocess
+import shutil
 
 # 🔥 PATHS
 BASE_PROJECT_PATH = os.path.join("..", "projects", "live_app")
@@ -273,3 +274,22 @@ CODE:
         write_app(updated)
 
     return "✅ App updated successfully 🚀"
+
+def create_downloadable_app():
+    print("📦 Creating downloadable app...")
+
+    project_path = BASE_PROJECT_PATH
+    zip_path = os.path.join(project_path, "react_app.zip")
+
+    # remove old zip if exists
+    if os.path.exists(zip_path):
+        os.remove(zip_path)
+
+    shutil.make_archive(
+        base_name=zip_path.replace(".zip", ""),
+        format="zip",
+        root_dir=project_path
+    )
+
+    print("✅ ZIP ready:", zip_path)
+    return zip_path
